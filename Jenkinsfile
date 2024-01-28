@@ -2,7 +2,6 @@ pipeline {
     agent any
     
     environment {
-        DOTNET_CLI_HOME = tool 'dotnet'
         DOCKER_IMAGE_NAME = "sample-app"
     }
 

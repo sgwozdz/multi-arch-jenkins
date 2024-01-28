@@ -1,27 +1,29 @@
-node('agent1') {
-    environment {
-        DOTNET_CLI_HOME = tool 'dotnet'
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+pipeline {
+    node('agent1') {
+        environment {
+            DOTNET_CLI_HOME = tool 'dotnet'
         }
 
-        stage('Build') {
-            steps {
-                script {
-                    sh "dotnet build"
+        stages {
+            stage('Checkout') {
+                steps {
+                    checkout scm
                 }
             }
-        }
 
-        stage('Publish') {
-            steps {
-                script {
-                    sh "dotnet publish -c Release -o ./publish"
+            stage('Build') {
+                steps {
+                    script {
+                        sh "dotnet build"
+                    }
+                }
+            }
+
+            stage('Publish') {
+                steps {
+                    script {
+                        sh "dotnet publish -c Release -o ./publish"
+                    }
                 }
             }
         }

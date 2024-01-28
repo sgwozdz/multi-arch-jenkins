@@ -1,4 +1,6 @@
 pipeline {
+    agent any
+    
     node('agent1') {
         environment {
             DOTNET_CLI_HOME = tool 'dotnet'

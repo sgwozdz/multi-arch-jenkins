@@ -1,6 +1,4 @@
-pipeline {
-    agent any
-    
+node('net6') {
     environment {
         DOTNET_CLI_HOME = tool 'dotnet'
     }

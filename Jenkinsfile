@@ -15,7 +15,9 @@ pipeline {
 
         stage('Build docker image ') {
             steps {
-                docker.build("${DOCKER_IMAGE_NAME}:latest-amd64", "--platform linux/amd64 .")
+                script{
+                    docker.build("${DOCKER_IMAGE_NAME}:latest-amd64", "--platform linux/amd64 .")
+                }
             }
         }
     }

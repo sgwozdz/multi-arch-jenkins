@@ -1,4 +1,4 @@
-node('net6') {
+node('agent1') {
     environment {
         DOTNET_CLI_HOME = tool 'dotnet'
     }

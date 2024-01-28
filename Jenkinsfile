@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         DOTNET_CLI_HOME = tool 'dotnet'
+        DOCKER_IMAGE_NAME = "sample-app"
     }
 
     stages {
@@ -12,19 +13,9 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build docker image ') {
             steps {
-                script {
-                    sh "dotnet build"
-                }
-            }
-        }
-
-        stage('Publish') {
-            steps {
-                script {
-                    sh "dotnet publish -c Release -o ./publish"
-                }
+                docker.build("${DOCKER_IMAGE_NAME}:latest-amd64", "--platform linux/amd64 .")
             }
         }
     }

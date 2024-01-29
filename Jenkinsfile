@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment { 
-    DOCKER_IMAGE_NAME = 'sample-app'
+    DOCKER_IMAGE_NAME = 'gwozdzs/sample-app'
   }
   stages {
     stage("Checkout") {

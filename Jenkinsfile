@@ -1,4 +1,5 @@
 pipeline {
+  agent any
   environment { 
     DOCKER_IMAGE_NAME = 'sample-app'
   }
@@ -9,10 +10,8 @@ pipeline {
       }
     }
     stage("Build docker images") {
-      parallel amd64: {
+      steps {
         def amd64 = docker.build("sample-app:amd64", "--platform linux/amd64")
-      },
-      arm64: {
         def arm64 = docker.build("sample-app:arm64", "--platform linux/arm64")
       }
     }

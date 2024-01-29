@@ -9,19 +9,21 @@ pipeline {
         checkout scm
       }
     }
-    stage("Build docker image") {
+    stage("Build & push docker image") {
       parallel {
-        stage("Build amd64 docker image") {
+        stage("Build & push amd64 docker image") {
           steps {
             script {
-              docker.build("${DOCKER_IMAGE_NAME}:amd64", "--platform linux/amd64 .")
+              def amd64Image = docker.build("${DOCKER_IMAGE_NAME}:amd64", "--platform linux/amd64 .")
+              amd64Image.push()
             }
           }
         }
-        stage("Build arm64 docker image") {
+        stage("Build & push arm64 docker image") {
           steps {
             script {
-              docker.build("${DOCKER_IMAGE_NAME}:arm64", "--platform linux/arm64 .")
+              def arm64Image = docker.build("${DOCKER_IMAGE_NAME}:arm64", "--platform linux/arm64 .")
+              arm64Image.push()
             }
           }
         }

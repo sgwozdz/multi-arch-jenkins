@@ -1,5 +1,5 @@
 node {
-    checkout scm
+  checkout scm
 
-    def customImage = docker.build("sample-app:latest")
+  def amd64 = docker.build("sample-app:amd64", "--platform linux/amd64")
 }
